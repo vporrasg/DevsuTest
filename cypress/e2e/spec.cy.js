@@ -1,5 +1,7 @@
+const Purchase_data = require('../fixtures/data.json')
+
 describe('Devsu test', () => {
-  it('Demoblaze test compra', () => {
+  it('Demoblaze Buy 2 items', () => {
     cy.visit('https://demoblaze.com/')
     //Selecciona item 1
     cy.get('#tbodyid > div:nth-child(1) > div > div > h4 > a').click()
@@ -15,13 +17,15 @@ describe('Devsu test', () => {
     cy.get(':nth-child(4) > .nav-link').click()
     //Se da click en boton Place Order
     cy.get('#page-wrapper > div > div.col-lg-1 > button').click()
-    //Se rellena informacion de comopra
-    cy.get('#name').type('Victor')
-    cy.get('#country').type('Costa Rica')
-    cy.get('#city').type('San Jose')
-    cy.get('#card').type('4444 8888 4444 8888')
-    cy.get('#month').type('11')
-    cy.get('#year').type('2026')
+    
+    //Fill purchase form
+    cy.get('#name').type(Purchase_data.name)
+    cy.get('#country').type(Purchase_data.country)
+    cy.get('#city').type(Purchase_data.city)
+    cy.get('#card').type(Purchase_data.card)
+    cy.get('#month').type(Purchase_data.month)
+    cy.get('#year').type(Purchase_data.year)
+
     //Se da click en boton de comprar
     cy.get('#orderModal > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click()
     //Se verifica que la alerta de la compra exitosa sea visible
